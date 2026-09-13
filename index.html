@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDIc avidaPROMPT IA — Par Darcy</title>
+  <meta name="description" content="Un outil de vide-coding pour ceux qui n'ont pas de passé technique — mais qui ont des idées.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+  <div style="position:fixed;top:var(--s-4);right:var(--s-4);z-index:10;display:flex;gap:var(--s-2);">
+    <div class="switch">
+      <button data-lang="fr" class="active">FR</button>
+      <button data-lang="en">EN</button>
+    </div>
+    <button class="btn btn--icon" data-theme-toggle title="Thème">🌑</button>
+  </div>
+
+  <section class="hero">
+    <div class="hero__inner">
+      <div style="margin-bottom:var(--s-6);">
+        <span class="badge" data-zone="lab">⬢ EDIc avidaPROMPT IA</span>
+      </div>
+
+      <h1 class="hero__title" data-i18n="hero.title">
+        Écris des prompts qui <em>tiennent</em>.
+      </h1>
+
+      <p class="hero__sub" data-i18n="hero.sub">
+        Un outil de vide-coding pour ceux qui n'ont pas de passé technique — mais qui ont des idées. Scripts LLM structurés, testés, partagés.
+      </p>
+
+      <div class="hero__actions">
+        <a href="app.html" class="btn btn--primary" data-i18n="hero.cta.primary">Ouvrir l'application</a>
+        <a href="app.html#doc" class="btn btn--ghost" data-i18n="hero.cta.secondary">Lire le manifeste</a>
+      </div>
+
+      <p class="hero__signature" data-i18n="hero.signature">
+        — Darcy, pour ceux qui viendront après.
+      </p>
+    </div>
+  </section>
+
+  <script type="module">
+    import { initTheme } from "./assets/js/theme.js";
+    import { applyI18n, setLang, getLang } from "./assets/js/i18n.js";
+    initTheme();
+    applyI18n();
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        setLang(btn.dataset.lang);
+        document.querySelectorAll("[data-lang]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+    document.querySelector(`[data-lang="${getLang()}"]`)?.classList.add("active");
+    document.querySelector("[data-theme-toggle]").addEventListener("click", (e) => {
+      import("./assets/js/theme.js").then(m => {
+        m.toggleTheme();
+        e.target.textContent = m.getTheme() === "dark" ? "🌑" : "☀️";
+      });
+    });
+  </script>
+</body>
+</html>

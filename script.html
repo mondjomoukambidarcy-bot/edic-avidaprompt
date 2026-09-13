@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script — EDIc avidaPROMPT IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/editor.css">
+</head>
+<body>
+
+  <div class="app">
+    <aside class="sidebar">
+      <a href="index.html" class="sidebar__logo">
+        <span class="sidebar__logo-mark">⬢</span>
+        <span>EDIc</span>
+      </a>
+      <nav class="sidebar__nav">
+        <a href="app.html" class="nav-item"><span class="nav-item__icon">🏠</span><span>Accueil</span></a>
+        <a href="app.html#lab" class="nav-item"><span class="nav-item__icon">🧪</span><span>Laboratoire</span></a>
+        <a href="app.html#sec" class="nav-item"><span class="nav-item__icon">🔐</span><span>Sécurité</span></a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div id="script-detail"></div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { getScript } from "./assets/js/storage.js";
+    import { initTheme } from "./assets/js/theme.js";
+
+    initTheme();
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const s = id ? getScript(id) : null;
+
+    const root = document.getElementById("script-detail");
+
+    if (!s) {
+      root.innerHTML = `<div class="card"><p class="muted">Script introuvable.</p><a href="app.html" class="btn btn--primary" style="margin-top:var(--s-4);">← Retour</a></div>`;
+    } else {
+      document.title = `${s.title} — EDIc`;
+      root.innerHTML = `
+        <div class="topbar">
+          <div>
+            <span class="badge" data-zone="${s.zone}">${s.zone.toUpperCase()}</span>
+            <h1 class="topbar__title" style="margin-top:var(--s-2);">${s.title}</h1>
+          </div>
+          <div class="topbar__actions">
+            <button class="btn btn--ghost" id="copy">📋 Copier</button>
+            <a href="app.html" class="btn btn--ghost">← Retour</a>
+          </div>
+        </div>
+
+        <div class="grid-stats" style="margin-bottom:var(--s-6);">
+          <div class="stat">
+            <div class="stat__label">Score</div>
+            <div class="stat__value">${s.score}<span class="dim" style="font-size:16px">/10</span></div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Zone</div>
+            <div class="stat__value" style="font-size:18px;">${s.zone}</div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Date</div>
+            <div class="stat__value" style="font-size:18px;">${s.date}</div>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-bottom:var(--s-6);">${s.desc}</p>
+
+        <div class="preview" style="max-height:none;">
+          <div class="preview__head">
+            <span class="preview__title">Prompt</span>
+          </div>
+          <div class="preview__body" id="prompt-body"></div>
+        </div>
+      `;
+
+      // Coloration syntaxique simple
+      const raw = s.prompt;
+      const html = raw
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/(&lt;\/?[a-z]+&gt;)/g, '<span class="tag">$1</span>')
+        .replace(/(\[[A-ZÀ-Ÿ_]+\])/g, '<span class="variable">$1</span>');
+      document.getElementById("prompt-body").innerHTML = html;
+
+      document.getElementById("copy").addEventListener("click", async () => {
+        await navigator.clipboard.writeText(raw);
+        const btn = document.getElementById("copy");
+        btn.textContent = "✓ Copié";
+        setTimeout(() => btn.textContent = "📋 Copier", 1500);
+      });
+    }
+  </script>
+</body>
+</html>

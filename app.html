@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDIc avidaPROMPT IA — App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a href="index.html" class="sidebar__logo">
+        <span class="sidebar__logo-mark">⬢</span>
+        <span>EDIc</span>
+      </a>
+
+      <nav class="sidebar__nav">
+        <div class="nav-item active" data-view="home">
+          <span class="nav-item__icon">🏠</span>
+          <span data-i18n="nav.home">Accueil</span>
+        </div>
+        <div class="nav-item" data-view="zone" data-zone="lab">
+          <span class="nav-item__icon">🧪</span>
+          <span data-i18n="nav.lab">Laboratoire</span>
+        </div>
+        <div class="nav-item" data-view="zone" data-zone="sec">
+          <span class="nav-item__icon">🔐</span>
+          <span data-i18n="nav.sec">Sécurité</span>
+        </div>
+        <div class="nav-item" data-view="zone" data-zone="dev">
+          <span class="nav-item__icon">⚙️</span>
+          <span data-i18n="nav.dev">Développement</span>
+        </div>
+        <div class="nav-item" data-view="mind" data-zone="mind">
+          <span class="nav-item__icon">🧠</span>
+          <span data-i18n="nav.mind">Pensée</span>
+        </div>
+        <div class="nav-item" data-view="doc">
+          <span class="nav-item__icon">📖</span>
+          <span data-i18n="nav.doc">Documentation</span>
+        </div>
+      </nav>
+
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:var(--s-2);">
+        <div class="switch" style="align-self:flex-start;">
+          <button data-lang="fr" class="active">FR</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <div class="nav-item" style="font-size:12px;color:var(--text-dim);">
+          <span class="nav-item__icon">👤</span>
+          <span>Darcy</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="topbar">
+        <div></div>
+        <div class="topbar__actions">
+          <button class="btn btn--icon" data-theme-toggle title="Thème">🌑</button>
+        </div>
+      </div>
+      <div id="main-content"></div>
+    </main>
+
+  </div>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
