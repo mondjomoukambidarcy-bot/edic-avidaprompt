@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════════════════════
+   EDIc avidaPROMPT IA — Design System
+   Par Darcy · MIT
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── THEME DARK (défaut) ── */
+:root, [data-theme="dark"] {
+  --bg-deep:      #0A0E1A;
+  --bg-surface:   #131826;
+  --bg-elevated:  #1A2033;
+  --border:       #232A3D;
+
+  --text-primary: #E8ECF1;
+  --text-muted:   #8B93A7;
+  --text-dim:     #4A5268;
+
+  --shadow: 0 4px 24px rgba(0,0,0,.4);
+  --overlay: rgba(10,14,26,.85);
+}
+
+/* ── THEME LIGHT (éditorial) ── */
+[data-theme="light"] {
+  --bg-deep:      #FAFAF7;
+  --bg-surface:   #FFFFFF;
+  --bg-elevated:  #F4F4F0;
+  --border:       #E4E4DE;
+
+  --text-primary: #1A1A1A;
+  --text-muted:   #6B6B6B;
+  --text-dim:     #A0A0A0;
+
+  --shadow: 0 4px 24px rgba(0,0,0,.06);
+  --overlay: rgba(250,250,247,.9);
+}
+
+/* ── ACCENTS (invariables) ── */
+:root {
+  --accent-lab:   #7C3AED;
+  --accent-sec:   #22D3EE;
+  --accent-dev:   #34D399;
+  --accent-mind:  #F59E0B;
+  --accent-doc:   #E8ECF1;
+
+  --ok:    #34D399;
+  --warn:  #F59E0B;
+  --fail:  #F87171;
+
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;
+  --s-4: 16px;  --s-6: 24px;  --s-8: 32px;
+  --s-12: 48px; --s-16: 64px;
+
+  --r-sm: 6px;  --r-md: 10px;  --r-lg: 16px;  --r-full: 9999px;
+
+  --t-fast: .15s ease;
+  --t-base: .25s ease;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background var(--t-base), color var(--t-base);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+input, textarea { font: inherit; }
+::selection { background: var(--accent-lab); color: #fff; }
+
+/* ── SCROLLBAR (cyber) ── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--r-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-lab); }
+
+/* ── UTILITAIRES ── */
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--text-muted); }
+.dim { color: var(--text-dim); }
+.flex { display: flex; }
+.between { justify-content: space-between; }
+.center { align-items: center; }
+.gap-2 { gap: var(--s-2); }  .gap-4 { gap: var(--s-4); }
+.gap-6 { gap: var(--s-6); }

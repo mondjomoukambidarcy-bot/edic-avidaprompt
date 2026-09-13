@@ -1,0 +1,153 @@
+/* ═══ BOUTONS ═══ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-6);
+  border-radius: var(--r-md);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  transition: all var(--t-fast);
+  border: 1px solid transparent;
+}
+.btn--primary {
+  background: var(--accent-lab);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: color-mix(in srgb, var(--accent-lab) 85%, white);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-lab) 40%, transparent);
+}
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+.btn--ghost:hover {
+  border-color: var(--accent-lab);
+  color: var(--accent-lab);
+}
+.btn--icon {
+  padding: var(--s-2);
+  width: 36px; height: 36px;
+  justify-content: center;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+}
+
+/* ═══ CARTES ═══ */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-6);
+  transition: border-color var(--t-base), transform var(--t-base);
+}
+
+/* ═══ BADGES DE ZONE ═══ */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  border: 1px solid currentColor;
+  opacity: .9;
+}
+.badge[data-zone="lab"]  { color: var(--accent-lab); }
+.badge[data-zone="sec"]  { color: var(--accent-sec); }
+.badge[data-zone="dev"]  { color: var(--accent-dev); }
+.badge[data-zone="mind"] { color: var(--accent-mind); }
+.badge[data-zone="doc"]  { color: var(--text-muted); }
+
+/* ═══ SCRIPT CARD ═══ */
+.script-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  transition: all var(--t-base);
+  cursor: pointer;
+}
+.script-card:hover {
+  border-color: var(--accent-lab);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.script-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.script-card__title {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.script-card__score {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ok);
+}
+.script-card__desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.script-card__meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+/* ═══ STATS ═══ */
+.stat {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-4) var(--s-6);
+}
+.stat__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.stat__value {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: var(--s-1) 0;
+}
+.stat__delta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.stat__delta--up   { color: var(--ok); }
+.stat__delta--down { color: var(--fail); }
+
+/* ═══ INPUT ═══ */
+.input, .textarea {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  transition: border-color var(--t-fast);
+}
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--accent-lab);
+}
